@@ -5,14 +5,16 @@
 	<title>Precios de tus mejores Guitarras !!</title>
 	<link href="https://fonts.googleapis.com/css?family=Montserrat|Allerta" rel="stylesheet"> 
 	<link rel="stylesheet" type="text/css" href="CSS/invie.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 </head>
-<body>
+<body class="precios">
 	<header id="header" class="header back">	<!-- header -->
-		<div class="contenedor ">
+		<div class="contenedor">
 			<figure class="logotipo"> <!-- logotipo -->
 				<img src="Imagenes/invie.png" width="186" height="80" alt="Invie logotipo"/>
 			</figure>
-			<nav class="menu"> <!-- menu -->
+			<span class="burguer-button icon-menu" id="burguer-button"></span>
+			<nav class="menu" id="menu"> <!-- menu -->
 				<ul>
 					<li>
 						<a href="index.html">Home</a>
@@ -35,10 +37,16 @@
 					<th>Modelo</th>
 					<th>Precio</th>
 					<th>Descripción</th>
+					<th>Modelo</th>
+					<th>Precio</th>
+					<th>Descripción</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr> <!-- contenido (primera fila) -->
+					<td>Invie Classic</td> <!-- columna Nombre -->
+					<td>$100.000</td> <!-- columna precio -->
+					<td>Una Guitarra muy pro</td> <!-- columna descripcion -->
 					<td>Invie Classic</td> <!-- columna Nombre -->
 					<td>$100.000</td> <!-- columna precio -->
 					<td>Una Guitarra muy pro</td> <!-- columna descripcion -->
@@ -47,8 +55,14 @@
 					<td>Invie Classic</td> <!-- columna Nombre -->
 					<td>$100.000</td> <!-- columna precio -->
 					<td>Una Guitarra muy pro</td> <!-- columna descripcion -->
+					<td>Invie Classic</td> <!-- columna Nombre -->
+					<td>$100.000</td> <!-- columna precio -->
+					<td>Una Guitarra muy pro</td> <!-- columna descripcion -->
 				</tr>
 				<tr> <!-- contenido (tercera fila) -->
+					<td>Invie Classic</td> <!-- columna Nombre -->
+					<td>$100.000</td> <!-- columna precio -->
+					<td>Una Guitarra muy pro</td> <!-- columna descripcion -->
 					<td>Invie Classic</td> <!-- columna Nombre -->
 					<td>$100.000</td> <!-- columna precio -->
 					<td>Una Guitarra muy pro</td> <!-- columna descripcion -->
@@ -101,5 +115,39 @@
 			</form>
 		</div>				
 	</footer>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/blazy/1.6.3/blazy.min.js"></script>
+	<script>
+		var consulta = window.matchMedia('(max-width:650px)');
+		consulta.addListener(mediaQuery);
+
+		var $burguerButton = document.getElementById("burguer-button");
+		var $menu = document.getElementById('menu');
+
+		function mediaQuery(){
+			if (consulta.matches){
+				console.log('se cumplio la condicion');
+				$burguerButton.addEventListener('touchstart', toggleMenu);
+			}
+			else{
+				console.log('no se cumplio la condicion');
+				$burguerButton.removeEventListener('touchstart', toggleMenu);	
+			}
+		}
+		// comenzar al recargar la pagina con la funcion mediaQuery
+		mediaQuery();
+
+		// $burguerButton.addEventListener('touchstart', toggleMenu);
+
+		function toggleMenu (){
+			$menu.classList.toggle('active');
+		};
+
+
+		// lazy loading
+		var blazy = new Blazy({
+			selector: 'img'
+		});
+
+	</script>
 </body>
 </html>

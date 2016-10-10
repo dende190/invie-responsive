@@ -4,16 +4,19 @@
 	<meta charset="utf-8" />
 	<title>Invie - Tus mejores Guitarras !!</title>
 	<link href="https://fonts.googleapis.com/css?family=Montserrat|Allerta" rel="stylesheet"> 
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<!-- <link href="https://fonts.googleapis.com/css?family=Allerta" rel="stylesheet">  -->
 	<link rel="stylesheet" type="text/css" href="CSS/invie.css">
+	<!-- <link rel="stylesheet" media="(max-width: 800px)"  href="CSS/media-querie.css"> -->
 </head>
 <body>
 	<section id="portada" class="portada back" > <!--portada-->
 		<header id="header" class="header contenedor">	<!-- header -->
 			<figure class="logotipo"> <!-- logotipo -->
-				<img src="Imagenes/invie.png" width="186" height="80" alt="Invie logotipo"/>
+				<img src="Imagenes/invie.png" srcset="Imagenes/invie2x.png" width="186" height="80" alt="Invie logotipo"/>
 			</figure>
-			<nav class="menu"> <!-- menu -->
+			<span class="burguer-button icon-menu" id="burguer-button"></span>
+			<nav class="menu" id="menu"> <!-- menu -->
 				<ul>
 					<li>
 						<a href="index.html">Home</a>
@@ -35,8 +38,16 @@
 	</section>
 	<section id="guitarras" class="guitarras contenedor"> <!-- guitarras -->
 		<h2>Nuestras guitarras</h2><!-- titulo -->
+		<div class="video-guitarras-container">
+			<div class="video-guitarras">
+				<div class="video-responsive-container">
+					<iframe class="video-responsive-src" width="560" height="315" src="https://www.youtube.com/embed/R1dW8M4EqYY" frameborder="0" allowfullscreen></iframe>
+				</div>
+			</div>
+		</div>
+		<!-- <video src="videos/video.mp4"></video> -->
 		<article class="guitarra"> <!-- guitarra1 --> 
-			<img src="Imagenes/invie-acustica.png" alt="Guitarra invie Acustica" width="350" class="right"  />
+			<img data-src="Imagenes/invie-acustica2x.png|Imagenes/invie-acustica.png" alt="Guitarra invie Acustica" width="350" class="right"  />
 			<div class="contenedor-guitarra-a">				
 				<h3 class="title-b">Invie Acustica</h3>
 				<ol >
@@ -53,7 +64,7 @@
 			</div>
 		</article>
 		<article class="guitarra"> <!-- guitarra2 --> 
-			<img src="Imagenes/invie-classic.png" alt="Guitarra invie Classic" width="350" class="left"/>
+			<img data-src="Imagenes/invie-classic.png" data-src-retina="Imagenes/invie-classic2x.png" alt="Guitarra invie Classic" width="350" class="left"/>
 			<div class="contenedor-guitarra-b"> 
 				<h3 class="title-b">Invie Classic</h3>
 				<ol>
@@ -73,7 +84,7 @@
 	<footer class="footer ">
 		<div class="contenedor">
 			<div class="contacto">
-				<img src="Imagenes/invie-white.png" alt="logotipo blanco">
+				<img data-src="Imagenes/invie-white.png" data-src-retina="Imagenes/invie-white2x.png" alt="logotipo blanco">
 				<a href="tel:+573024221917"><strong>Telefono</strong> <span>3024221917</span></a>
 				<a href="mailto:contacto@invie.com"><strong>E-mail</strong> <span>contacto@invie.com</span></a>
 			</div>
@@ -112,8 +123,55 @@
 					<input type="submit" value="Enviar" class="button" />
 				</div>
 			</form>
-		</div>
-				
+		</div>				
 	</footer>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/blazy/1.6.3/blazy.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
+	<script>
+		var $burguerButton = document.getElementById("burguer-button");
+		var $menu = document.getElementById('menu');
+		
+		var consulta = window.matchMedia('(max-width:650px)');
+		consulta.addListener(mediaQuery);
+
+		function toggleMenu (){
+			$menu.classList.toggle('active');
+		};
+		function showMenu (){
+			$menu.classList.add('active');
+		};
+		function hideMenu (){
+			$menu.classList.remove('active');
+		};
+
+		function mediaQuery(){
+			if (consulta.matches){
+				console.log('se cumplio la condicion');
+				$burguerButton.addEventListener('touchstart', toggleMenu);
+			}
+			else{
+				console.log('no se cumplio la condicion');
+				$burguerButton.removeEventListener('touchstart', toggleMenu);	
+			}
+		}
+
+		// $burguerButton.addEventListener('touchstart', toggleMenu);
+
+		// comenzar al recargar la pagina con la funcion mediaQuery
+
+		mediaQuery();
+
+		///////////////////////// lazy loading /////////////////////
+		var blazy = new Blazy({
+			selector: 'img'
+		});
+
+		////////////////////////// GESTOS TOUCH ////////////////////
+		var $body = document.body;
+
+		var gestos = new Hammer( $body );
+		gestos.on( 'swipeleft', hideMenu);
+		gestos.on( 'swiperight', showMenu);
+	</script>
 </body>
 </html>
