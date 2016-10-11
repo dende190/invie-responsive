@@ -390,6 +390,9 @@ video{
 	.contacto{
 		margin: 0 auto;
 	}
+	.contac{
+		margin-right: 20px !important ; 
+	}
 	.formulario{
 		display: block;
 		margin: 0 auto;
@@ -405,9 +408,22 @@ video{
 	.col1{
 		margin: 0;
 	}
+	input[type="text"]{
+		margin-bottom: 20px;
+	}
 	input[type="text"], input[type="email"]{
 		font-size: 16px;
 		padding: 5px;
+	}
+	.col1{
+		font-size: 16px;
+	}
+	.sexo{
+		margin-top: 20px;
+		margin-bottom: 20px;
+	}
+	.radio{
+		margin-right: 10px;
 	}
 	textarea{
 		width: 100%
